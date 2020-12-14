@@ -6,9 +6,10 @@ Server side resources - Database, Threads, Files, Sockets, Ports, Kernel, OS, Cl
 Run JS/ES6 code running/executing on server can access server side resources!
 
 Node - Runtime
+
 Node is not a programming language. ES6, Typescript, JS
 
-All you node programs (projects) will run in single threaded non-blocking event loop!
+All your node programs (projects) will run in single threaded non-blocking event loop!
 
 Express - Framework built on Node.
 
