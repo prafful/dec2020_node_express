@@ -1,4 +1,16 @@
 
+Run
+
+npm install
+
+or
+
+npm i
+
+then run
+
+npm run nodemon <whatever_filename.js>
+
 Classic JS cannot access server side resources!!!!
 
 Server side resources - Database, Threads, Files, Sockets, Ports, Kernel, OS, Cluster, Graphics Card/Driver
