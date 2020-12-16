@@ -36,3 +36,7 @@ https://medium.com/better-programming/is-node-js-really-single-threaded-7ea59bcc
 https://www.nextgenerationautomation.com/post/understand-node-js-single-thread-event-loop-work-flow
 
 https://stackoverflow.com/questions/17959663/why-is-node-js-single-threaded
+
+Connect with DB
+
+https://www.tutorialsteacher.com/nodejs/access-sql-server-in-nodejs

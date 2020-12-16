@@ -2,7 +2,7 @@
   "name": "examples",
   "version": "1.0.0",
   "description": "Classic JS cannot access server side resources!!!!",
-  "main": "001helloworld.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "launch": "nodemon"
@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/prafful/dec2020_node_express#readme",
   "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
     "nodemon": "^2.0.6"
   }
 }
