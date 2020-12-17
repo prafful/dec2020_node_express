@@ -18,8 +18,12 @@
   },
   "homepage": "https://github.com/prafful/dec2020_node_express#readme",
   "dependencies": {
+    "axios": "^0.21.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
-    "mysql": "^2.18.1",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
     "nodemon": "^2.0.6"
   }
 }

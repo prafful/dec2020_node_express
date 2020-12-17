@@ -1,5 +1,6 @@
 var express = require('express')
 var mysql = require('mysql')
+var cors = require('cors')
 
 console.log(mysql)
 
@@ -13,8 +14,9 @@ var connectionObject = mysql.createConnection({
 
 var app  = express()
 app.use(express.json())
+app.use(cors())
 
-friends = [
+friendslocal = [
     {
         id:1,
         name:"obb",
@@ -32,11 +34,11 @@ app.get("/", (req, res)=>{
     res.send("Welcome to express app!!!!")
 })
 
-app.get("/friends", (req, res)=>{
+app.get("/friendslocal", (req, res)=>{
     res.send(friends)
 })
 
-app.post("/friends", (req, res)=>{
+app.post("/friendslocal", (req, res)=>{
     console.log(req.body)
     if(req.body != undefined){
          friends.push(req.body)
@@ -44,11 +46,15 @@ app.post("/friends", (req, res)=>{
     res.send(friends)
 })
 
-app.get("/customers", (req, res)=>{
-    connectionObject.connect((err)=>{
-        if(err)
-            throw err
-        console.log("Connected to MySQL server  and Database")
+connectionObject.connect((err)=>{
+    if(err)
+        throw err
+    console.log("Connected to MySQL server  and Database")
+
+}) 
+
+app.get("/friends", (req, res)=>{
+   
     
         var sql = "select * from friends"
         connectionObject.query(sql, (err, data)=>{
@@ -57,14 +63,24 @@ app.get("/customers", (req, res)=>{
             
             res.send(data)
                 
-        } )
-    
-    
+        })
     })
-    
-})
 
-app.post('/customers', (req, res)=>{
+app.get("/friends/:id", (req, res)=>{
+   
+    
+        var sql = "select * from friends where id=" + req.params.id
+        console.log(sql)
+        connectionObject.query(sql, (err, data)=>{
+            if(err)
+                throw err
+            
+            res.send(data)
+                
+        })
+    })
+
+app.post('/friends', (req, res)=>{
     console.log(req.body)
     var sql = `insert into friends 
                 (
@@ -94,9 +110,31 @@ app.post('/customers', (req, res)=>{
     
 })
 
+app.put("/friends/:id", (req, res)=>{
+    console.log(req.body)
+    //res.send("udpating friend with id: " + req.params.id)
+    var sql = "update friends set name = ' " + req.body.name + "',"+
+            "location = '" + req.body.location + "'" +
+            "where id = " + req.params.id
+    console.log(sql)
+    connectionObject.query(sql, (err, data)=>{
+        if(err)
+            throw err
+        console.log("Updated friend with id: " + req.params.id)
+        res.send(data)
+    })        
+})
 
-
-
+app.delete("/friends/:id", (req, res)=>{
+    var sql = "delete from friends where id = " + req.params.id
+    connectionObject.query(sql, (err, data)=>{
+        if(err)
+            throw err
+        
+        res.send(data)
+            
+    })
+})
 
 
 app.listen(1234, ()=>{
