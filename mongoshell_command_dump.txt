@@ -1,0 +1,485 @@
+
+C:\Users\pd
+λ mongo
+MongoDB shell version v4.4.2
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("e96f12de-403a-45ea-b945-b6b3eee0dcb5") }
+MongoDB server version: 4.4.2
+Welcome to the MongoDB shell.
+For interactive help, type "help".
+For more comprehensive documentation, see
+        https://docs.mongodb.com/
+Questions? Try the MongoDB Developer Community Forums
+        https://community.mongodb.com
+---
+The server generated these startup warnings when booting:
+        2020-12-22T12:04:07.590+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+        2020-12-22T12:04:07.591+05:30: This server is bound to localhost. Remote systems will be unable to connect to this server. Start the server with --bind_ip <address> to specify which IP addresses it should serve responses from, or with --bind_ip_all to bind to all interfaces. If this behavior is desired, start the server with --bind_ip 127.0.0.1 to disable this warning
+---
+---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+> db
+test
+> show databases
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> use friends
+switched to db friends
+> db
+friends
+> show databases
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> db.createCollection("personal")
+{ "ok" : 1 }
+> show collections
+personal
+> db.createCollection("detail")
+{ "ok" : 1 }
+> show collections
+detail
+personal
+> show databases
+admin    0.000GB
+config   0.000GB
+friends  0.000GB
+local    0.000GB
+> db.personal.read()
+uncaught exception: TypeError: db.personal.read is not a function :
+@(shell):1:1
+> db.personal.find()
+> db.detail.find()
+> db.personal.insert({name:"prafful", "years":10, "location":"chennai"})
+WriteResult({ "nInserted" : 1 })
+>
+> db.personal.find()
+{ "_id" : ObjectId("5fe1956755a0dc27f59ab999"), "name" : "prafful", "years" : 10, "location" : "chennai" }
+> db.personal.find().pretty()
+
+        "_id" : ObjectId("5fe1956755a0dc27f59ab999"),
+        "name" : "prafful",
+        "years" : 10,
+        "location" : "chennai"
+}
+> db.personal.insert({name:"obb", "years":4, "location":"chennai"})
+WriteResult({ "nInserted" : 1 })
+> db.personal.insert({name:"cas", "years":3, "location":"bengaluru"})
+WriteResult({ "nInserted" : 1 })
+> db.personal.find().pretty()
+
+        "_id" : ObjectId("5fe1956755a0dc27f59ab999"),
+        "name" : "prafful",
+        "years" : 10,
+        "location" : "chennai"
+}
+
+        "_id" : ObjectId("5fe1959d55a0dc27f59ab99a"),
+        "name" : "obb",
+        "years" : 4,
+        "location" : "chennai"
+}
+
+        "_id" : ObjectId("5fe195ac55a0dc27f59ab99b"),
+        "name" : "cas",
+        "years" : 3,
+        "location" : "bengaluru"
+}
+> db.detail.find()
+> db.personal.insert({name:"bnp", "years":3, "location":"jodhpur"})
+WriteResult({ "nInserted" : 1 })
+> db.personal.find().pretty()
+
+        "_id" : ObjectId("5fe1956755a0dc27f59ab999"),
+        "name" : "prafful",
+        "years" : 10,
+        "location" : "chennai"
+}
+
+        "_id" : ObjectId("5fe1959d55a0dc27f59ab99a"),
+        "name" : "obb",
+        "years" : 4,
+        "location" : "chennai"
+}
+
+        "_id" : ObjectId("5fe195ac55a0dc27f59ab99b"),
+        "name" : "cas",
+        "years" : 3,
+        "location" : "bengaluru"
+}
+
+        "_id" : ObjectId("5fe1969555a0dc27f59ab99c"),
+        "name" : "bnp",
+        "years" : 3,
+        "location" : "jodhpur"
+}
+> db
+friends
+> db.personal.update({name:"obb"},{$set:{name:"obbo"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.personal.find().pretty()
+
+        "_id" : ObjectId("5fe1956755a0dc27f59ab999"),
+        "name" : "prafful",
+        "years" : 10,
+        "location" : "chennai"
+}
+
+        "_id" : ObjectId("5fe1959d55a0dc27f59ab99a"),
+        "name" : "obbo",
+        "years" : 4,
+        "location" : "chennai"
+}
+
+        "_id" : ObjectId("5fe195ac55a0dc27f59ab99b"),
+        "name" : "cas",
+        "years" : 3,
+        "location" : "bengaluru"
+}
+
+        "_id" : ObjectId("5fe1969555a0dc27f59ab99c"),
+        "name" : "bnp",
+        "years" : 3,
+        "location" : "jodhpur"
+}
+> db.personal.find().pretty()
+
+        "_id" : ObjectId("5fe1956755a0dc27f59ab999"),
+        "name" : "prafful",
+        "years" : 10,
+        "location" : "chennai"
+}
+
+        "_id" : ObjectId("5fe1959d55a0dc27f59ab99a"),
+        "name" : "obbo",
+        "years" : 4,
+        "location" : "chennai"
+}
+
+        "_id" : ObjectId("5fe195ac55a0dc27f59ab99b"),
+        "name" : "cas",
+        "years" : 3,
+        "location" : "bengaluru"
+}
+
+        "_id" : ObjectId("5fe1969555a0dc27f59ab99c"),
+        "name" : "bnp",
+        "years" : 3,
+        "location" : "jodhpur"
+}
+> db.personal.find().pretty()
+
+        "_id" : ObjectId("5fe1956755a0dc27f59ab999"),
+        "name" : "prafful",
+        "years" : 10,
+        "location" : "chennai"
+}
+
+        "_id" : ObjectId("5fe1959d55a0dc27f59ab99a"),
+        "name" : "obbo",
+        "years" : 4,
+        "location" : "chennai"
+}
+
+        "_id" : ObjectId("5fe195ac55a0dc27f59ab99b"),
+        "name" : "cas",
+        "years" : 3,
+        "location" : "bengaluru"
+}
+
+        "_id" : ObjectId("5fe1969555a0dc27f59ab99c"),
+        "name" : "bnp",
+        "years" : 3,
+        "location" : "jodhpur"
+}
+> db
+friends
+> show databases
+admin    0.000GB
+config   0.000GB
+friends  0.000GB
+local    0.000GB
+> db.personal.find()
+{ "_id" : ObjectId("5fe1956755a0dc27f59ab999"), "name" : "prafful", "years" : 10, "location" : "chennai" }
+{ "_id" : ObjectId("5fe1959d55a0dc27f59ab99a"), "name" : "obbo", "years" : 4, "location" : "chennai" }
+{ "_id" : ObjectId("5fe195ac55a0dc27f59ab99b"), "name" : "cas", "years" : 3, "location" : "bengaluru" }
+{ "_id" : ObjectId("5fe1969555a0dc27f59ab99c"), "name" : "bnp", "years" : 3, "location" : "jodhpur" }
+
+> db.personal.find().pretty()
+
+        "_id" : ObjectId("5fe1956755a0dc27f59ab999"),
+        "name" : "prafful",
+        "years" : 10,
+        "location" : "chennai"
+}
+
+        "_id" : ObjectId("5fe1959d55a0dc27f59ab99a"),
+        "name" : "obbo",
+        "years" : 4,
+        "location" : "chennai"
+}
+
+        "_id" : ObjectId("5fe195ac55a0dc27f59ab99b"),
+        "name" : "cas",
+        "years" : 3,
+        "location" : "bengaluru"
+}
+
+        "_id" : ObjectId("5fe1969555a0dc27f59ab99c"),
+        "name" : "bnp",
+        "years" : 3,
+        "location" : "jodhpur"
+}
+> db.personal.find().pretty()
+
+        "_id" : ObjectId("5fe1956755a0dc27f59ab999"),
+        "name" : "prafful",
+        "years" : 10,
+        "location" : "chennai"
+}
+
+        "_id" : ObjectId("5fe1959d55a0dc27f59ab99a"),
+        "name" : "obbo",
+        "years" : 4,
+        "location" : "chennai"
+}
+
+        "_id" : ObjectId("5fe195ac55a0dc27f59ab99b"),
+        "name" : "cas",
+        "years" : 3,
+        "location" : "bengaluru"
+}
+
+        "_id" : ObjectId("5fe1969555a0dc27f59ab99c"),
+        "name" : "bnp",
+        "years" : 3,
+        "location" : "jodhpur"
+}
+
+        "_id" : ObjectId("5fe1a02b2a5792afe0b4f027"),
+        "name" : "owioh",
+        "location" : "palanpur",
+        "years" : 10,
+        "__v" : 0
+}
+
+        "_id" : ObjectId("5fe1a0d0f666427acc416b8d"),
+        "name" : "owioh",
+        "location" : "palanpur",
+        "years" : 10,
+        "__v" : 0
+}
+> db.personal.inserrtMany([{   "name": "gyuill0",   "location": "Charing Cross",   "years": 2011 }, {
+   "name": "edymidowski1",   "location": "Rigney",   "years": 2005 }, {   "name": "amcfadden2",   "location": "Oriole",   "years": 2012 }, {   "name": "ndrinan3",   "location": "Kipling",   "years": 2011 }, {   "name": "ddyter4",   "location": "Northview",   "years": 1997 }, {   "name": "nnadin5",   "location": "Arrowood",   "years": 2008 }, {   "name": "mportingale6",   "location": "Elmside",   "years": 2002 }, {   "name": "mgarrique7",   "location": "Express",   "years": 2006 }, {   "name": "nmacconneely8",   "location": "Erie",   "years": 2010 }, {   "name": "gworledge9",   "location": "Jenifer",
+   "years": 2007 }, {   "name": "haaronsa",   "location": "Mariners Cove",   "years": 1994 }, {   "name": "cjupeb",   "location": "Oakridge",   "years": 1999 }, {   "name": "malvyc",   "location": "Northport",   "years": 2000 }, {   "name": "twarlockd",   "location": "Shasta",   "years": 1985 }, {   "name": "hrobjohnse",   "location": "Lillian",   "years": 1995 }, {   "name": "cfadianf",   "location": "Surrey",   "years": 1970 }, {   "name": "hstrassg",   "location": "Acker",   "years": 2001 }, {   "name": "omarieth",   "location": "Sundown",   "years": 2009 }, {   "name": "jesmondei",   "location": "Village Green",   "years": 2012 }, {   "name": "agalbraithj",   "location": "Brown",   "years": 2011 }, {   "name": "mmcilwaink",   "location": "Mockingbird",   "years": 1996 }, {   "name": "swerlockl",   "location": "Hallows",   "years": 1996 }, {   "name": "smatteim",   "location": "Columbus",   "years": 2007 }, {   "name": "cplumsteadn",   "location": "Warner",   "years": 1998 }, {   "name": "lolenechano",   "location": "Darwin",   "years": 1993 }, {   "name": "fskymp",   "location": "Columbus",
+   "years": 1989 }, {   "name": "sdatq",   "location": "Quincy",   "years": 1992 }, {   "name": "kmcgowanr",   "location": "American",   "years": 1995 }, {   "name": "learies",   "location": "Miller",
+ "years": 1995 }, {   "name": "sreinmart",   "location": "Schmedeman",   "years": 2007 }, {   "name": "ldarbeyu",   "location": "Golden Leaf",   "years": 2002 }, {   "name": "slhommeev",   "location": "Leroy",   "years": 2005 }, {   "name": "aurryw",   "location": "Eagan",   "years": 1969 }, {   "name": "hgabbx",   "location": "7th",   "years": 1994 }, {   "name": "fhubbley",   "location": "Vermont",
+  "years": 1995 }, {   "name": "zgarfieldz",   "location": "Buell",   "years": 2010 }, {   "name": "ebellocht10",   "location": "Delladonna",   "years": 1987 }, {   "name": "reffemy11",   "location": "Longview",   "years": 2009 }, {   "name": "pventam12",   "location": "Northview",   "years": 2002 }, {
+   "name": "mgreystoke13",   "location": "Hayes",   "years": 1986 }, {   "name": "cslocumb14",   "location": "Dayton",   "years": 1984 }, {   "name": "alinstead15",   "location": "Dexter",   "years": 2002 }, {   "name": "nberni16",   "location": "North",   "years": 2003 }, {   "name": "cingliby17",   "location": "Delladonna",   "years": 2011 }, {   "name": "mthickpenny18",   "location": "Barby",   "years": 1991 }, {   "name": "csharrock19",   "location": "Autumn Leaf",   "years": 1977 }, {   "name": "cbuckell1a",   "location": "Meadow Ridge",   "years": 2010 }, {   "name": "lburvill1b",   "location": "Kinsman",   "years": 2007 }, {   "name": "cranger1c",   "location": "Goodland",   "years": 1987 }, {   "name": "sharg1d",   "location": "Jenna",   "years": 1999 }, {   "name": "arawstorn1e",   "location": "Thackeray",   "years": 2003 }, {   "name": "bbollam1f",   "location": "Browning",   "years": 1992 }, {   "name": "kmorrel1g",   "location": "Kensington",   "years": 1996 }, {   "name": "amorstatt1h",   "location": "Porter",   "years": 1996 }, {   "name": "cgreader1i",   "location": "Kropf",   "years": 2011 }, {   "name": "beagling1j",   "location": "Fairfield",   "years": 1991 }, {   "name": "bswyersexey1k",   "location": "Meadow Ridge",   "years": 1994 }, {   "name": "cnanelli1l",   "location": "Scofield",   "years": 1985 }])
+uncaught exception: TypeError: db.personal.inserrtMany is not a function :
+@(shell):1:1
+> db.personal.insertMany([{   "name": "gyuill0",   "location": "Charing Cross",   "years": 2011 }, {
+  "name": "edymidowski1",   "location": "Rigney",   "years": 2005 }, {   "name": "amcfadden2",   "location": "Oriole",   "years": 2012 }, {   "name": "ndrinan3",   "location": "Kipling",   "years": 2011 }, {   "name": "ddyter4",   "location": "Northview",   "years": 1997 }, {   "name": "nnadin5",   "location": "Arrowood",   "years": 2008 }, {   "name": "mportingale6",   "location": "Elmside",   "years": 2002 }, {   "name": "mgarrique7",   "location": "Express",   "years": 2006 }, {   "name": "nmacconneely8",   "location": "Erie",   "years": 2010 }, {   "name": "gworledge9",   "location": "Jenifer",
+  "years": 2007 }, {   "name": "haaronsa",   "location": "Mariners Cove",   "years": 1994 }, {   "name": "cjupeb",   "location": "Oakridge",   "years": 1999 }, {   "name": "malvyc",   "location": "Northport",   "years": 2000 }, {   "name": "twarlockd",   "location": "Shasta",   "years": 1985 }, {   "name": "hrobjohnse",   "location": "Lillian",   "years": 1995 }, {   "name": "cfadianf",   "location": "Surrey",   "years": 1970 }, {   "name": "hstrassg",   "location": "Acker",   "years": 2001 }, {   "name": "omarieth",   "location": "Sundown",   "years": 2009 }, {   "name": "jesmondei",   "location": "Village Green",   "years": 2012 }, {   "name": "agalbraithj",   "location": "Brown",   "years": 2011 }, {   "name": "mmcilwaink",   "location": "Mockingbird",   "years": 1996 }, {   "name": "swerlockl",   "location": "Hallows",   "years": 1996 }, {   "name": "smatteim",   "location": "Columbus",   "years": 2007 }, {   "name": "cplumsteadn",   "location": "Warner",   "years": 1998 }, {   "name": "lolenechano",   "location": "Darwin",   "years": 1993 }, {   "name": "fskymp",   "location": "Columbus",
+  "years": 1989 }, {   "name": "sdatq",   "location": "Quincy",   "years": 1992 }, {   "name": "kmcgowanr",   "location": "American",   "years": 1995 }, {   "name": "learies",   "location": "Miller",
+"years": 1995 }, {   "name": "sreinmart",   "location": "Schmedeman",   "years": 2007 }, {   "name": "ldarbeyu",   "location": "Golden Leaf",   "years": 2002 }, {   "name": "slhommeev",   "location": "Leroy",   "years": 2005 }, {   "name": "aurryw",   "location": "Eagan",   "years": 1969 }, {   "name": "hgabbx",   "location": "7th",   "years": 1994 }, {   "name": "fhubbley",   "location": "Vermont",
+ "years": 1995 }, {   "name": "zgarfieldz",   "location": "Buell",   "years": 2010 }, {   "name": "ebellocht10",   "location": "Delladonna",   "years": 1987 }, {   "name": "reffemy11",   "location": "Longview",   "years": 2009 }, {   "name": "pventam12",   "location": "Northview",   "years": 2002 }, {
+  "name": "mgreystoke13",   "location": "Hayes",   "years": 1986 }, {   "name": "cslocumb14",   "location": "Dayton",   "years": 1984 }, {   "name": "alinstead15",   "location": "Dexter",   "years": 2002 }, {   "name": "nberni16",   "location": "North",   "years": 2003 }, {   "name": "cingliby17",   "location": "Delladonna",   "years": 2011 }, {   "name": "mthickpenny18",   "location": "Barby",   "years": 1991 }, {   "name": "csharrock19",   "location": "Autumn Leaf",   "years": 1977 }, {   "name": "cbuckell1a",   "location": "Meadow Ridge",   "years": 2010 }, {   "name": "lburvill1b",   "location": "Kinsman",   "years": 2007 }, {   "name": "cranger1c",   "location": "Goodland",   "years": 1987 }, {   "name": "sharg1d",   "location": "Jenna",   "years": 1999 }, {   "name": "arawstorn1e",   "location": "Thackeray",   "years": 2003 }, {   "name": "bbollam1f",   "location": "Browning",   "years": 1992 }, {   "name": "kmorrel1g",   "location": "Kensington",   "years": 1996 }, {   "name": "amorstatt1h",   "location": "Porter",   "years": 1996 }, {   "name": "cgreader1i",   "location": "Kropf",   "years": 2011 }, {   "name": "beagling1j",   "location": "Fairfield",   "years": 1991 }, {   "name": "bswyersexey1k",   "location": "Meadow Ridge",   "years": 1994 }, {   "name": "cnanelli1l",   "location": "Scofield",   "years": 1985 }])
+
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("5fe1a3d155a0dc27f59ab99d"),
+                ObjectId("5fe1a3d155a0dc27f59ab99e"),
+                ObjectId("5fe1a3d155a0dc27f59ab99f"),
+                ObjectId("5fe1a3d155a0dc27f59ab9a0"),
+                ObjectId("5fe1a3d155a0dc27f59ab9a1"),
+                ObjectId("5fe1a3d155a0dc27f59ab9a2"),
+                ObjectId("5fe1a3d155a0dc27f59ab9a3"),
+                ObjectId("5fe1a3d155a0dc27f59ab9a4"),
+                ObjectId("5fe1a3d155a0dc27f59ab9a5"),
+                ObjectId("5fe1a3d155a0dc27f59ab9a6"),
+                ObjectId("5fe1a3d155a0dc27f59ab9a7"),
+                ObjectId("5fe1a3d155a0dc27f59ab9a8"),
+                ObjectId("5fe1a3d155a0dc27f59ab9a9"),
+                ObjectId("5fe1a3d155a0dc27f59ab9aa"),
+                ObjectId("5fe1a3d155a0dc27f59ab9ab"),
+                ObjectId("5fe1a3d155a0dc27f59ab9ac"),
+                ObjectId("5fe1a3d155a0dc27f59ab9ad"),
+                ObjectId("5fe1a3d155a0dc27f59ab9ae"),
+                ObjectId("5fe1a3d155a0dc27f59ab9af"),
+                ObjectId("5fe1a3d155a0dc27f59ab9b0"),
+                ObjectId("5fe1a3d155a0dc27f59ab9b1"),
+                ObjectId("5fe1a3d155a0dc27f59ab9b2"),
+                ObjectId("5fe1a3d155a0dc27f59ab9b3"),
+                ObjectId("5fe1a3d155a0dc27f59ab9b4"),
+                ObjectId("5fe1a3d155a0dc27f59ab9b5"),
+                ObjectId("5fe1a3d155a0dc27f59ab9b6"),
+                ObjectId("5fe1a3d155a0dc27f59ab9b7"),
+                ObjectId("5fe1a3d155a0dc27f59ab9b8"),
+                ObjectId("5fe1a3d155a0dc27f59ab9b9"),
+                ObjectId("5fe1a3d155a0dc27f59ab9ba"),
+                ObjectId("5fe1a3d155a0dc27f59ab9bb"),
+                ObjectId("5fe1a3d155a0dc27f59ab9bc"),
+                ObjectId("5fe1a3d155a0dc27f59ab9bd"),
+                ObjectId("5fe1a3d155a0dc27f59ab9be"),
+                ObjectId("5fe1a3d155a0dc27f59ab9bf"),
+                ObjectId("5fe1a3d155a0dc27f59ab9c0"),
+                ObjectId("5fe1a3d155a0dc27f59ab9c1"),
+                ObjectId("5fe1a3d155a0dc27f59ab9c2"),
+                ObjectId("5fe1a3d155a0dc27f59ab9c3"),
+                ObjectId("5fe1a3d155a0dc27f59ab9c4"),
+                ObjectId("5fe1a3d155a0dc27f59ab9c5"),
+                ObjectId("5fe1a3d155a0dc27f59ab9c6"),
+                ObjectId("5fe1a3d155a0dc27f59ab9c7"),
+                ObjectId("5fe1a3d155a0dc27f59ab9c8"),
+                ObjectId("5fe1a3d155a0dc27f59ab9c9"),
+                ObjectId("5fe1a3d155a0dc27f59ab9ca"),
+                ObjectId("5fe1a3d155a0dc27f59ab9cb"),
+                ObjectId("5fe1a3d155a0dc27f59ab9cc"),
+                ObjectId("5fe1a3d155a0dc27f59ab9cd"),
+                ObjectId("5fe1a3d155a0dc27f59ab9ce"),
+                ObjectId("5fe1a3d155a0dc27f59ab9cf"),
+                ObjectId("5fe1a3d155a0dc27f59ab9d0"),
+                ObjectId("5fe1a3d155a0dc27f59ab9d1"),
+                ObjectId("5fe1a3d155a0dc27f59ab9d2"),
+                ObjectId("5fe1a3d155a0dc27f59ab9d3"),
+                ObjectId("5fe1a3d155a0dc27f59ab9d4"),
+                ObjectId("5fe1a3d155a0dc27f59ab9d5"),
+                ObjectId("5fe1a3d155a0dc27f59ab9d6")
+        ]
+}
+> db.personal.find().pretty()
+
+        "_id" : ObjectId("5fe1956755a0dc27f59ab999"),
+        "name" : "prafful",
+        "years" : 10,
+        "location" : "chennai"
+}
+
+        "_id" : ObjectId("5fe1959d55a0dc27f59ab99a"),
+        "name" : "obbo",
+        "years" : 4,
+        "location" : "chennai"
+}
+
+        "_id" : ObjectId("5fe195ac55a0dc27f59ab99b"),
+        "name" : "cas",
+        "years" : 3,
+        "location" : "bengaluru"
+}
+
+        "_id" : ObjectId("5fe1969555a0dc27f59ab99c"),
+        "name" : "bnp",
+        "years" : 3,
+        "location" : "jodhpur"
+}
+
+        "_id" : ObjectId("5fe1a02b2a5792afe0b4f027"),
+        "name" : "owioh",
+        "location" : "palanpur",
+        "years" : 10,
+        "__v" : 0
+}
+
+        "_id" : ObjectId("5fe1a0d0f666427acc416b8d"),
+        "name" : "owioh",
+        "location" : "palanpur",
+        "years" : 10,
+        "__v" : 0
+}
+
+        "_id" : ObjectId("5fe1a3d155a0dc27f59ab99d"),
+        "name" : "gyuill0",
+        "location" : "Charing Cross",
+        "years" : 2011
+}
+
+        "_id" : ObjectId("5fe1a3d155a0dc27f59ab99e"),
+        "name" : "edymidowski1",
+        "location" : "Rigney",
+        "years" : 2005
+}
+
+        "_id" : ObjectId("5fe1a3d155a0dc27f59ab99f"),
+        "name" : "amcfadden2",
+        "location" : "Oriole",
+        "years" : 2012
+}
+
+        "_id" : ObjectId("5fe1a3d155a0dc27f59ab9a0"),
+        "name" : "ndrinan3",
+        "location" : "Kipling",
+        "years" : 2011
+}
+
+        "_id" : ObjectId("5fe1a3d155a0dc27f59ab9a1"),
+        "name" : "ddyter4",
+        "location" : "Northview",
+        "years" : 1997
+}
+
+        "_id" : ObjectId("5fe1a3d155a0dc27f59ab9a2"),
+        "name" : "nnadin5",
+        "location" : "Arrowood",
+        "years" : 2008
+}
+
+        "_id" : ObjectId("5fe1a3d155a0dc27f59ab9a3"),
+        "name" : "mportingale6",
+        "location" : "Elmside",
+        "years" : 2002
+}
+
+        "_id" : ObjectId("5fe1a3d155a0dc27f59ab9a4"),
+        "name" : "mgarrique7",
+        "location" : "Express",
+        "years" : 2006
+}
+
+        "_id" : ObjectId("5fe1a3d155a0dc27f59ab9a5"),
+        "name" : "nmacconneely8",
+        "location" : "Erie",
+        "years" : 2010
+}
+
+        "_id" : ObjectId("5fe1a3d155a0dc27f59ab9a6"),
+        "name" : "gworledge9",
+        "location" : "Jenifer",
+        "years" : 2007
+}
+
+        "_id" : ObjectId("5fe1a3d155a0dc27f59ab9a7"),
+        "name" : "haaronsa",
+        "location" : "Mariners Cove",
+        "years" : 1994
+}
+
+        "_id" : ObjectId("5fe1a3d155a0dc27f59ab9a8"),
+        "name" : "cjupeb",
+        "location" : "Oakridge",
+        "years" : 1999
+}
+
+        "_id" : ObjectId("5fe1a3d155a0dc27f59ab9a9"),
+        "name" : "malvyc",
+        "location" : "Northport",
+        "years" : 2000
+}
+
+        "_id" : ObjectId("5fe1a3d155a0dc27f59ab9aa"),
+        "name" : "twarlockd",
+        "location" : "Shasta",
+        "years" : 1985
+}
+Type "it" for more
+>
