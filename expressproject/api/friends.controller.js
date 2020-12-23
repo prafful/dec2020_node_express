@@ -1,3 +1,4 @@
+const { response } = require('express')
 var {
         getAllFriends, 
         getFriendById
@@ -6,28 +7,43 @@ var {
 module.exports = {
     getAllFriendsController: (req, res)=>{
         getAllFriends((error, results)=>{
-            if(error){
-                console.log(error)
-                return
+            if(error != null){
+                 console.log("Error....")
+                 console.log(error)
+                 res.status(500).send({
+                     message: "Error in middleware!!!!",
+                     error: error
+                 })
             }
-                
-            return res.json({
-                success:1,
-                data: results
-            })    
+           if(results != undefined){
+                console.log("Results:")
+                console.log(results)
+                res.json({
+                    success:1,
+                    data: results
+                })    
+           }
+           
         })
     },
     getFriendByIdController: (req, res)=>{
         var id=req.params.id
         getFriendById(id, (error, results)=>{
-            if(error){
+            if(error != null){
                 console.log(error)
-                return
+                res.status(500).send({
+                    message: "Error in middleware!!!!",
+                    error: error
+                })
             }
-            return res.json({
-                success:1,
-                data: results
-            })     
+            if(results != undefined){
+                console.log("Results:")
+                console.log(results)
+                res.json({
+                    success:1,
+                    data: results
+                })    
+           }
         })
     }
 }    
