@@ -12,7 +12,7 @@ app.get('/token', (req, res)=>{
         scope: ["create", "read"]
     }
 
-    let token = jwt.sign(user, "somesecretkey")
+    let token = jwt.sign(user, "somesecretkey", {expiresIn: "20s"})
     res.send(token)
 })
 
