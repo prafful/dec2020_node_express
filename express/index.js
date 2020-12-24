@@ -1,6 +1,7 @@
 var express = require('express')
 var mysql = require('mysql')
 var cors = require('cors')
+var { body, validationResult } = require('express-validator');
 
 console.log(mysql)
 
@@ -80,30 +81,39 @@ app.get("/friends/:id", (req, res)=>{
         })
     })
 
-app.post('/friends', (req, res)=>{
-    console.log(req.body)
-    var sql = `insert into friends 
-                (
-                name, location
-                )
-                values
-                (
-                    ?,?
-                );
-              `
-    connectionObject.query(sql, [ req.body.name,  req.body.location], (err, data)=>{
-        if(err)
-            throw err
-        
-        console.log(data)
-        var sql = "select * from friends"
-        connectionObject.query(sql, (err, data)=>{
-            if(err)
-                throw err
-            
-            res.send(data)
-                
-        })
+app.post('/friends',[
+                        body('name').not().isEmpty().withMessage("name must not be empty"), 
+                        body('location').not().isEmpty().withMessage("location must not be empty")
+                    ], 
+          (req, res)=>{
+                        var error = validationResult(req)
+                        if (!error.isEmpty()) {
+                            return res.status(400).json({ errors: error.array() });
+                          }
+                        
+                        console.log(req.body)
+                        var sql = `insert into friends 
+                                    (
+                                    name, location
+                                    )
+                                    values
+                                    (
+                                        ?,?
+                                    );
+                                `
+                        connectionObject.query(sql, [ req.body.name,  req.body.location], (err, data)=>{
+                            if(err)
+                                throw err
+                            
+                            console.log(data)
+                            var sql = "select * from friends"
+                            connectionObject.query(sql, (err, data)=>{
+                                if(err)
+                                    throw err
+                                
+                                res.send(data)
+                                    
+                            })
     
     })          
 
